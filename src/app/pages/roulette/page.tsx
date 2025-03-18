@@ -4,25 +4,19 @@ import { motion } from "framer-motion";
 import Swal from "sweetalert2"; // Import de SweetAlert2
 
 export default function Roulette() {
+  const initialMatcheshuit = Array(16).fill("");
+  const initialMatchesquatre = Array(8).fill("");
+  const initialMatchesdemi = Array(4).fill("");
+  const initialMatchesfinal = Array(2).fill("");
+  const [huitiemes, setHuitiemes] = useState(initialMatcheshuit);
+  const [quatre, setquatre] = useState(initialMatchesquatre);
+  const [demi, setdemi] = useState(initialMatchesdemi);
+  const [final, setfinal] = useState(initialMatchesfinal);
+
   const [options, setOptions] = useState<string[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
   const [newOption, setNewOption] = useState("");
   const [spinning, setSpinning] = useState(false);
-  const matches = {
-    huitiemes: [
-      "1er A vs 2ème B",
-      "1er C vs 2ème D",
-      "1er E vs 2ème F",
-      "1er G vs 2ème H",
-      "1er B vs 2ème A",
-      "1er D vs 2ème C",
-      "1er F vs 2ème E",
-      "1er H vs 2ème G",
-    ],
-    quarts: ["I vs II", "III vs IV", "V vs VI", "VII vs VIII"],
-    demiFinales: ["a vs b", "c vs d"],
-    finale: "Finale",
-  };
   // Fonction pour ajouter une option
   const addOption = () => {
     if (newOption.trim() !== "") {
@@ -48,10 +42,20 @@ export default function Roulette() {
       setOptions(options.filter((_, index) => index !== randomIndex));
       setSpinning(false);
 
+      // Ajout du gagnant dans la première case vide des 1/8 de finale
+      setHuitiemes((prevHuitiemes) => {
+        const updatedMatches = [...prevHuitiemes];
+        const emptyIndex = updatedMatches.findIndex((match) => match === "");
+        if (emptyIndex !== -1) {
+          updatedMatches[emptyIndex] = chosen;
+        }
+        return updatedMatches;
+      });
+
       // Affichage du résultat avec SweetAlert2
       Swal.fire({
-        title: "Résultat",
-        text: `Le gagnant est: ${chosen}`,
+        title: "Resultat",
+        text: ` ${chosen}`,
         icon: "success",
         confirmButtonText: "OK",
         background: "#f0f0f0",
@@ -77,7 +81,7 @@ export default function Roulette() {
           />
           <button
             onClick={addOption}
-            className="bg-blue-500 text-white px-4 py-2 rounded m-6 w-40 "
+            className="bg-blue-500 text-white px-4 py-2 text-2xl font-bold rounded m-6 w-50 "
           >
             Ajouter
           </button>
@@ -85,7 +89,7 @@ export default function Roulette() {
           <motion.div
             animate={{ rotate: spinning ? 360 * 5 : 0 }}
             transition={{ duration: 2 }}
-            className="w-[400px] h-[400px] bg-gray-300 flex items-center justify-center rounded-full border-4 border-gray-500 relative"
+            className="w-[450px] h-[450px] bg-gray-300 flex items-center justify-center rounded-full border-4 border-gray-500 relative"
           >
             {/* Affichage des options disposées en cercle autour de la roulette */}
             <div className="absolute inset-0 flex justify-center items-center">
@@ -141,7 +145,7 @@ export default function Roulette() {
 
           <button
             onClick={spinWheel}
-            className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+            className="bg-green-500 text-white px-4 py-2 rounded  text-2xl font-bold mt-6 w-50"
           >
             Tourner
           </button>
@@ -152,7 +156,7 @@ export default function Roulette() {
           </h2>
           <ul className="list-disc ">
             {options.map((item, index) => (
-              <li key={index} className="text-lg ">
+              <li key={index} className="text-lg list-none ">
                 {item}
               </li>
             ))}
@@ -166,35 +170,43 @@ export default function Roulette() {
 
         <div className="grid grid-cols-4 gap-6 w-full max-w-6xl">
           <div className="flex flex-col space-y-4">
-            <h2 className="text-center text-3xl font-bold ">1/8 de Finale</h2>
-            {matches.huitiemes.map((match, index) => (
-              <div
-                key={index}
-                className="border-l-4 border-orange-500 pl-4 py-2 bg-gray-800 rounded-md text-center"
-              >
-                {match}
-              </div>
-            ))}
+            <h2 className="text-center text-3xl font-bold mt-6 ">
+              1/8 de Finale
+            </h2>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              {huitiemes.map((match, index) => (
+                <div
+                  key={index}
+                  className="p-4 border rounded-lg bg-white shadow-md w-40 text-center"
+                >
+                  <p className="font-semibold text-black">
+                    {match || "En attente..."}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-col space-y-10">
             <h2 className="text-center text-3xl font-bold ">1/4 de Finale</h2>
-            {matches.quarts.map((match, index) => (
+            {quatre.map((match, index) => (
               <div
                 key={index}
-                className="border-l-4 border-white pl-4 py-4 bg-gray-700 rounded-md text-center"
+                className="p-4 border rounded-lg bg-white shadow-md w-40 text-center"
               >
-                {match}
+                <p className="font-semibold text-black">
+                  {match || "En attente..."}
+                </p>
               </div>
             ))}
           </div>
 
           <div className="flex flex-col space-y-16">
             <h2 className="text-center text-3xl font-bold ">1/2 Finale </h2>
-            {matches.demiFinales.map((match, index) => (
+            {demi.map((match, index) => (
               <div
                 key={index}
-                className="border-l-4 border-yellow-500 pl-4 py-6 bg-gray-600 rounded-md text-center"
+                className="p-4 border rounded-lg bg-white shadow-md w-40 text-center"
               >
                 {match}
               </div>
@@ -203,9 +215,15 @@ export default function Roulette() {
 
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-center text-3xl font-bold mb-3">Finale</h2>
-            <div className="border-l-4 border-red-500 p-4 py-8 bg-gray-500 rounded-md text-center text-xl font-bold">
-              {matches.finale}
-            </div>
+
+            {final.map((match, index) => (
+              <div
+                key={index}
+                className="p-4 border rounded-lg bg-white shadow-md w-40 text-center"
+              >
+                {match}
+              </div>
+            ))}
           </div>
         </div>
       </div>
