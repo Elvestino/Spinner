@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🎲 Roulette G.I.F.A 🏆
+Ce projet est une application de type "Roulette" développée avec Next.js, permettant de choisir un participant de manière aléatoire et de générer automatiquement un tableau de tournoi (arbre de bracket) à partir d'une liste de participants.
 
-## Getting Started
+🚀 Démarrage Rapide
+Cloner le dépôt :
 
-First, run the development server:
 
-```bash
+
+### git clone git@github.com:Elvestino/Spinner.git
+### cd spinner
+Installer les dépendances :
+
+npm install
+# ou
+yarn install
+
+Lancer le serveur de développement :
+
 npm run dev
-# or
+# ou
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+L'application sera accessible sur http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✨ Fonctionnalités Principales
+Ajout de participants : Les utilisateurs peuvent entrer des noms et les ajouter à la roulette.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Rotation aléatoire : Le coeur de l'application permet de sélectionner un participant au hasard.
 
-## Learn More
+Génération de tournoi : Création et affichage d'un arbre de tournoi (bracket) pour des matchs compétitifs (1/8 de Finale, 1/4 de Finale, etc.).
 
-To learn more about Next.js, take a look at the following resources:
+📸 Aperçu
+1. L'Interface de la Roulette
+L'interface principale où les participants peuvent être ajoutés et la roue peut être tournée.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Le Résultat du Tirage
+Affichage du participant sélectionné de manière aléatoire après la rotation.
 
-## Deploy on Vercel
+3. L'Arbre de Tournoi
+Visualisation de l'arbre de compétition, généré à partir des participants, des 1/8 de Finale à la Finale.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🛠 Technologies Utilisées
+Next.js, TailwindCSS, React-custom-roulette
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Test](assets/1.png)
+
+![Test2](assets/2.png)
+
+![Test3](assets/3.png)
+
+🤝 Contribution
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou soumettre une pull request.
+
+
+📧 Contact
+Créé par Elvestino - N'hésitez pas à me contacter à elvestinodorelin@gmail.com
