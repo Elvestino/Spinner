@@ -33,21 +33,26 @@ Génération de tournoi : Création et affichage d'un arbre de tournoi (bracket)
 1. L'Interface de la Roulette
 L'interface principale où les participants peuvent être ajoutés et la roue peut être tournée.
 
+![Test](assets/img/1.png)
 
 2. Le Résultat du Tirage
 Affichage du participant sélectionné de manière aléatoire après la rotation.
 
+![Test3](assets/img/3.png)
+
+
 3. L'Arbre de Tournoi
 Visualisation de l'arbre de compétition, généré à partir des participants, des 1/8 de Finale à la Finale.
+
+![Test2](assets/img/2.png)
 
 🛠 Technologies Utilisées
 Next.js, TailwindCSS, React-custom-roulette
 
-![Test](assets/1.png)
 
-![Test2](assets/2.png)
 
-![Test3](assets/3.png)
+
+
 
 🤝 Contribution
 Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou soumettre une pull request.
